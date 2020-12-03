@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "Meet The Ispums",
+    date: "Dec 2nd, 2020",
+    firstParagraph: "Shrink feelings blessings loses Bifur cutting outlast. I can cut across country easily enough. Alliance 40 thoughts stink overrun invitations scouts sniveling Concerning Hobbits fisherman mighty sun's. Today unlikely Noldorin droppings grumpy rising. Orthanc understand sadness wife valued. High pushing lack seem anywhere cry wood allies we'll Radagast the Brown hang merchants. Sake Frodo clearer grieve became bargain risen winters rising? Ease herald spring southern Théodred's. Sage roll might concealment hometown size Háma?",
+    
+    secondParagraph: "For there's a man inside me, and only when he's finally out, can I walk free of pain. Come on, this is a Bluth family celebration. It's no place for children. I don't appreciate the dry British humor. Fried cheese… with club sauce. Popcorn shrimp… with club sauce. Chicken fingers… with spicy club sauce. I've used one adjective to describe myself. What is it? You're losing blood, aren't you? Gob: Probably, my socks are wet. Heyyyy uncle father Oscar.",
+    
+    thirdParagraph: "Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.",
   }
 ];
 
@@ -114,3 +123,45 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(data) {
+  let article = document.createElement("div");
+  let title = document.createElement("h2");
+  let date = document.createElement("p");
+  let p1 = document.createElement("p")
+  let p2 = document.createElement("p")
+  let p3 = document.createElement("p")
+  let button = document.createElement("span");
+
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(button);
+
+  article.classList.add("article");
+  date.classList.add("date");
+  button.classList.add("expandButton")
+
+  title.textContent = data.title;
+  date.textContent = data.date;
+  p1.textContent = data.firstParagraph;
+  p2.textContent = data.secondParagraph;
+  p3.textContent = data.thirdParagraph;
+  button.textContent = "+";
+
+  button.addEventListener("click", (event) => {
+    article.classList.toggle("article-open");
+  });
+
+  return article;
+};
+
+let articles = document.querySelector(".articles");
+
+data.forEach((article) => {
+  let newArticle = articleMaker(article);
+  articles.appendChild(newArticle);
+});
